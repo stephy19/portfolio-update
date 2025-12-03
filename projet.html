@@ -5,16 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mes Projets | Irie Vangny Stéphane</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #b600a7;
-            --primary-dark: #3f0130;
-            --secondary: #1f2937;
-            --light: #ffe4f6;
+            /* Mode Sombre (Par Défaut) */
+            --primary: #9C4DFF; /* Violet plus vif */
+            --secondary: #FF7BCA; /* Rose plus doux */
+            --tertiary: #A87BFF; /* Violet clair */
+            --accent: #C97BFF; /* Orchidée clair */
+            --light: #1A1A2E; /* Fond sombre */
+            --light-bg: #16213E; /* Bleu nuit */
+            --dark: #E6E6FA; /* Texte clair */
+            --gray: #A0A0A0;
+            --gray-light: #2D2D44; /* Gris foncé */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mode Clair */
+        body.light-mode {
+            --primary: #8A2BE2; /* Violet */
+            --secondary: #FF69B4; /* Rose */
+            --tertiary: #9370DB; /* Violet clair */
+            --accent: #BA55D3; /* Orchidée */
+            --light: #FFFFFF; /* Blanc */
+            --light-bg: #F8F0FF; /* Violet très clair pour fond */
+            --dark: #333333; /* Texte foncé */
             --gray: #6b7280;
-            --gray-light: #ffd0dc;
-            --transition: all 0.3s ease;
+            --gray-light: #E6E6FA; /* Lavande clair */
+            --shadow: 0 10px 30px rgba(138, 43, 226, 0.1);
         }
 
         * {
@@ -30,9 +47,10 @@
 
         body {
             background-color: var(--light);
-            color: var(--secondary);
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .container {
@@ -44,12 +62,13 @@
 
         /* Header & Navigation */
         header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--light);
+            box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: var(--transition);
         }
 
         nav {
@@ -76,7 +95,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--secondary);
+            color: var(--dark);
             font-weight: 500;
             transition: var(--transition);
             font-size: 1rem;
@@ -91,42 +110,102 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--secondary);
+            color: var(--dark);
             background: none;
             border: none;
             z-index: 1001;
         }
 
+        /* Bouton Mode Sombre/Clair */
+        .theme-toggle {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(156, 77, 255, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 20px rgba(156, 77, 255, 0.4);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         /* Hero Section */
         .projects-hero {
             padding: 8rem 0 4rem;
-            background: linear-gradient(135deg, #f0f9ff 0%, #fee0eb 100%);
+            background: linear-gradient(135deg, var(--light-bg) 0%, #2A0B3A 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        body.light-mode .projects-hero {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #FDF2FF 100%);
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(156, 77, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .projects-hero h1 {
             font-size: 2.8rem;
             margin-bottom: 1rem;
-            color: var(--secondary);
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
         }
 
         .projects-hero .highlight {
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .projects-hero p {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: var(--dark);
             max-width: 600px;
             margin: 0 auto 2rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
         }
 
         .btn {
             display: inline-block;
             padding: 1rem 2.2rem;
-            background-color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
-            border-radius: 8px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
@@ -134,28 +213,47 @@
             cursor: pointer;
             font-size: 1rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
         }
 
         .btn:hover {
-            background-color: var(--primary-dark);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(182, 0, 167, 0.2);
+            box-shadow: 0 10px 20px rgba(156, 77, 255, 0.3);
         }
 
         .btn-outline {
-            background-color: transparent;
+            background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
         }
 
         .btn-outline:hover {
-            background-color: var(--primary);
             color: white;
         }
 
         /* Projects Grid */
         .projects-section {
             padding: 5rem 0;
+            background-color: var(--light-bg);
+            transition: var(--transition);
         }
 
         .projects-grid {
@@ -166,19 +264,21 @@
         }
 
         .project-card {
-            background: white;
-            border-radius: 15px;
+            background: var(--light);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow);
             transition: var(--transition);
             height: 100%;
             display: flex;
             flex-direction: column;
+            border: 2px solid var(--gray-light);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(156, 77, 255, 0.2);
+            border-color: var(--primary);
         }
 
         .project-image {
@@ -202,12 +302,13 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             padding: 0.4rem 1rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
+            z-index: 1;
         }
 
         .project-content {
@@ -220,14 +321,15 @@
         .project-content h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         .project-content p {
-            color: var(--gray);
+            color: var(--dark);
             margin-bottom: 1.5rem;
             flex-grow: 1;
             line-height: 1.7;
+            opacity: 0.9;
         }
 
         .project-tech {
@@ -238,12 +340,13 @@
         }
 
         .tech-tag {
-            background: var(--light);
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             font-size: 0.85rem;
             font-weight: 500;
+            border: none;
         }
 
         .project-links {
@@ -260,10 +363,11 @@
 
         /* Project Stats */
         .projects-stats {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             padding: 4rem 0;
             margin: 4rem 0;
+            transition: var(--transition);
         }
 
         .stats-container {
@@ -277,6 +381,7 @@
             font-size: 3rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
+            color: white;
         }
 
         .stat-item p {
@@ -288,28 +393,38 @@
         .cta-section {
             padding: 5rem 0;
             text-align: center;
-            background-color: #f1f5f9;
+            background: linear-gradient(135deg, var(--light) 0%, var(--light-bg) 100%);
+            transition: var(--transition);
         }
 
         .cta-section h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: var(--secondary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .cta-section p {
-            color: var(--gray);
+            color: var(--dark);
             max-width: 600px;
             margin: 0 auto 2rem;
             font-size: 1.1rem;
+            opacity: 0.9;
         }
 
         /* Footer */
         footer {
-            background-color: #111827;
-            color: #94a3b8;
+            background-color: #0F0F23;
+            color: rgba(255, 255, 255, 0.8);
             padding: 3.5rem 0;
             text-align: center;
+            transition: var(--transition);
+        }
+
+        body.light-mode footer {
+            background-color: var(--dark);
         }
 
         .footer-content {
@@ -319,7 +434,7 @@
         }
 
         .footer-content .logo {
-            color: white;
+            color: var(--primary);
             font-size: 1.8rem;
         }
 
@@ -330,7 +445,7 @@
         }
 
         .social-links a {
-            color: #94a3b8;
+            color: var(--primary);
             font-size: 1.8rem;
             transition: var(--transition);
             width: 50px;
@@ -343,13 +458,35 @@
         }
 
         .social-links a:hover {
-            color: var(--primary);
-            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            background: var(--primary);
             transform: translateY(-3px);
         }
 
         footer p {
             font-size: 1.05rem;
+            opacity: 0.8;
+        }
+
+        /* Back to Home */
+        .back-to-home {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .back-to-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-to-home a:hover {
+            gap: 0.8rem;
+            color: var(--secondary);
         }
 
         /* ===== RESPONSIVE DESIGN ===== */
@@ -375,7 +512,7 @@
                 left: -100%;
                 width: 100%;
                 height: 100vh;
-                background-color: white;
+                background-color: var(--light);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
@@ -476,26 +613,6 @@
         .animate-on-scroll {
             animation: fadeInUp 0.6s ease forwards;
         }
-
-        /* Back to Home */
-        .back-to-home {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .back-to-home a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .back-to-home a:hover {
-            gap: 0.8rem;
-        }
     </style>
 </head>
 <body>
@@ -512,9 +629,14 @@
                     <li><a href="index.html#certificats">Certificats</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
-                <button class="mobile-menu" aria-label="Menu mobile">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="mobile-menu" aria-label="Menu mobile">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -549,7 +671,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://portfolio-irie.vercel.app/" target="_blank" class="btn">Voir le site</a>
-                            <a href="https://github.com/votre-github/portfolio" target="_blank" class="btn btn-outline">Code source</a>
+                            <a href="https://github.com/stephy19" target="_blank" class="btn btn-outline">Code source</a>
                         </div>
                     </div>
                 </div>
@@ -619,50 +741,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Projet 5: Application Mobile (exemple) -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-category">Application Mobile</div>
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Application Mobile">
-                    </div>
-                    <div class="project-content">
-                        <h3>TaskFlow - Gestion de Tâches</h3>
-                        <p>Application mobile de gestion de tâches avec synchronisation en temps réel, notifications push et interface drag-and-drop. Développée avec React Native et Firebase.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Redux</span>
-                            <span class="tech-tag">Push Notifications</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-outline">Voir démo</a>
-                            <a href="#" class="btn">Télécharger APK</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projet 6: Dashboard Admin -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-category">Dashboard</div>
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dashboard Admin">
-                    </div>
-                    <div class="project-content">
-                        <h3>Dashboard Analytics</h3>
-                        <p>Tableau de bord administratif avec visualisation de données en temps réel, rapports exportables et gestion des utilisateurs. Sécurisé avec authentification JWT et rôles.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Express.js</span>
-                            <span class="tech-tag">Chart.js</span>
-                            <span class="tech-tag">JWT</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-outline">Voir screenshots</a>
-                            <a href="#" class="btn">Documentation</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -672,7 +750,7 @@
         <div class="container">
             <div class="stats-container">
                 <div class="stat-item">
-                    <h3>6+</h3>
+                    <h3>4+</h3>
                     <p>Projets Réalisés</p>
                 </div>
                 <div class="stat-item">
@@ -680,7 +758,7 @@
                     <p>Satisfaction Client</p>
                 </div>
                 <div class="stat-item">
-                    <h3>4</h3>
+                    <h3>10+</h3>
                     <p>Technologies Maîtrisées</p>
                 </div>
                 <div class="stat-item">
@@ -712,9 +790,8 @@
             <div class="footer-content">
                 <a href="index.html" class="logo">Irie V. Stéphane</a>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/stephy19" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/vangny-st%C3%A9phane-irie-112637333" target="_blank"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <p>&copy; 2025 Tous droits réservés. Développeur Web & Mobile</p>
             </div>
@@ -722,6 +799,39 @@
     </footer>
 
     <script>
+        // Gestion du thème sombre/clair
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Mode sombre par défaut
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        
+        // Appliquer le thème
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            document.body.classList.remove('light-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        // Basculer le thème
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            if (document.body.classList.contains('light-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
         // Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
@@ -774,7 +884,7 @@
 
         // Fermer le menu en cliquant en dehors
         document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
+            if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target) && !themeToggle.contains(e.target)) {
                 navLinks.classList.remove('active');
                 hamburgerIcon.classList.remove('fa-times');
                 hamburgerIcon.classList.add('fa-bars');
@@ -796,22 +906,29 @@
         const statsObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 statNumbers.forEach(stat => {
-                    const target = parseInt(stat.textContent);
+                    const originalText = stat.textContent;
+                    if (originalText === '∞') return;
+                    
+                    const target = parseInt(originalText);
                     const increment = target / 50;
                     let current = 0;
                     
                     const timer = setInterval(() => {
                         current += increment;
                         if (current >= target) {
-                            stat.textContent = stat.textContent; // Garde le texte original
+                            stat.textContent = originalText;
                             clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current);
                         }
                     }, 30);
                 });
             }
         }, { threshold: 0.5 });
 
-        statsObserver.observe(statsSection);
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
     </script>
 </body>
 </html>
