@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portfolio | Irie Vangny Stéphane - Développeur Web & Mobile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #b600a7;
+            --primary-dark: #3f0130;
+            --secondary: #1f2937;
+            --light: #ffe4f6;
+            --gray: #6b7280;
+            --gray-light: #ffd0dc;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            min-height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fee0eb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text .title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.2rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(182, 0, 167, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--secondary);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.8rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .info-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 100px;
+        }
+
+        .info-item {
+            margin-bottom: 2rem;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .language {
+            background-color: var(--gray-light);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 5rem 0;
+            background-color: #f1f5f9;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 46%;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: rotate(45deg);
+            top: 25px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -10px;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--light);
+            border-radius: 20px;
+        }
+
+        .timeline-content p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .timeline-content ul {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 5rem 0;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background-color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+
+        .skill-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Certificates Section */
+        .certificates {
+            padding: 5rem 0;
+            background-color: #f1f5f9;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            background-color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .certificate-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .certificate-score {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .certificate-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Interests Section */
+        .interests {
+            padding: 5rem 0;
+        }
+
+        .interests-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .interest-item {
+            text-align: center;
+            max-width: 250px;
+            padding: 2rem;
+        }
+
+        .interest-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .interest-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+
+        .interest-item p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .contact .section-title h2 {
+            color: white;
+        }
+
+        .contact .section-title p {
+            color: #cbd5e1;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+            min-width: 40px;
+            padding-top: 0.2rem;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .contact-item p {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: white;
+            font-size: 1.05rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #374151;
+            background-color: #374151;
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background-color: #4b5563;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: #94a3b8;
+            padding: 3.5rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .footer-content .logo {
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: #94a3b8;
+            font-size: 1.8rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            font-size: 1.05rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Tablets */
+        @media (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .profile-img {
+                max-width: 300px;
+            }
+        }
+
+        /* Mobile - Landscape */
+        @media (max-width: 900px) {
+            .hero-content,
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-text {
+                order: 2;
+                text-align: center;
+            }
+            
+            .hero-image {
+                order: 1;
+            }
+            
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .info-card {
+                position: static;
+                margin-top: 2rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+                margin-left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content::before,
+            .timeline-item:nth-child(odd) .timeline-content::before {
+                left: -10px;
+                right: auto;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+            }
+        }
+
+        /* Mobile - Portrait */
+        @media (max-width: 768px) {
+            /* Menu mobile */
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.4rem;
+                padding: 0.8rem 2rem;
+                border-bottom: 2px solid transparent;
+            }
+            
+            .nav-links a:hover {
+                border-bottom-color: var(--primary);
+            }
+            
+            /* Hero section */
+            .hero {
+                padding: 6rem 0 3rem;
+                min-height: auto;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-text .title {
+                font-size: 1.2rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .profile-img {
+                max-width: 250px;
+            }
+            
+            /* Sections */
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
+            }
+            
+            /* Skills & Certificates */
+            .skills-container,
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            /* Interests */
+            .interests-container {
+                gap: 2rem;
+            }
+            
+            .interest-item {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            /* Buttons */
+            .btn-group {
+                justify-content: center;
+            }
+            
+            .btn {
+                padding: 0.9rem 1.8rem;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.9rem;
+            }
+            
+            .hero-text .title {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.9rem;
+            }
+            
+            .profile-img {
+                max-width: 220px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .skill-card,
+            .certificate-card,
+            .info-card {
+                padding: 1.8rem 1.5rem;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            
+            .contact-icon {
+                font-size: 1.5rem;
+            }
+            
+            .social-links {
+                gap: 1.5rem;
+            }
+            
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Very Small Mobile */
+        @media (max-width: 360px) {
+            .hero-text h1 {
+                font-size: 1.7rem;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.7rem;
+            }
+            
+            .profile-img {
+                max-width: 200px;
+            }
+        }
+
+        /* Animation for scroll reveal */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Irie V. Stéphane</div>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#experience">Expérience</a></li>
+                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="#certificats">Certificats</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu" aria-label="Menu mobile">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Irie Vangny <span class="highlight">Stéphane</span></h1>
+                    <div class="title">Technicien Support Informatique – Développeur Web et Mobile – Formateur</div>
+                    <p>Passionné par les technologies et le développement numérique, je suis développeur web et mobile, formateur en informatique et technicien support. Mon objectif est de concevoir des solutions innovantes et performantes tout en transmettant mes connaissances.</p>
+                    <div class="btn-group">
+                        <a href="projet.html" class="btn">Voir mes projets</a>
+                        <a href="#contact" class="btn btn-outline">Me contacter</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="irie.jpeg" alt="Irie Vangny Stéphane" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="apropos">
+        <div class="container">
+            <div class="section-title">
+                <h2>À propos de moi</h2>
+                <p>Découvrez mon parcours et ma passion pour le développement</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Transformez vos idées en réalité numérique</h3>
+                    <p>Passionné par les technologies et le développement numérique, je suis développeur web et mobile, formateur en informatique et technicien support. Mon objectif est de concevoir des solutions innovantes et performantes tout en transmettant mes connaissances aux utilisateurs et aux apprenants.</p>
+                    <p>Curieux et rigoureux, je m'efforce de rester à la pointe des évolutions technologiques pour répondre efficacement aux besoins actuels et anticiper ceux de demain.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-item">
+                        <h4><i class="fas fa-address-card"></i> Coordonnées</h4>
+                        <p><i class="fas fa-phone"></i> +225 0759444725</p>
+                        <p><i class="fas fa-envelope"></i> steph.oft@gmail.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Abidjan, Côte d'Ivoire</p>
+                        <p><i class="fab fa-linkedin"></i> linkedin.com/in/vangny-stephane</p>
+                    </div>
+                    <div class="info-item">
+                        <h4><i class="fas fa-language"></i> Langues</h4>
+                        <div class="languages">
+                            <span class="language">Français - Courant</span>
+                            <span class="language">Anglais - Moyen</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <h4><i class="fas fa-car"></i> Permis de conduire</h4>
+                        <p><i class="fas fa-id-card"></i> A, B</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Expérience Professionnelle</h2>
+                <p>Mon parcours professionnel dans le domaine du développement et du support informatique</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Technicien Informatique – Formateur</h3>
+                        <div class="timeline-date">Depuis Septembre 2025</div>
+                        <p><strong>UNI TECHNOLOGY</strong> - Yaou Bkilos Bonoua, Côte d'Ivoire</p>
+                        <ul>
+                            <li>Assistance technique aux utilisateurs pour résoudre leurs problématiques informatiques</li>
+                            <li>Conception et animation de sessions de formation pour les équipes</li>
+                            <li>Collaboration avec les équipes pour identifier les besoins en développement</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Développeur Web</h3>
+                        <div class="timeline-date">Septembre 2024 - Septembre 2025</div>
+                        <p><strong>Établissement Public Hospitalier Régional</strong> - Bouaké, Côte d'Ivoire</p>
+                        <ul>
+                            <li>Mise en place d'une plateforme de communication digitale avec API de Blog intégré</li>
+                            <li>Maintenance de la plateforme garantissant la performance</li>
+                            <li>Site: chrbouake.kesug.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="competences">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Compétences</h2>
+                <p>Domaines d'expertise et compétences techniques</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Développement Web & Mobile</h3>
+                    <p>Création d'applications web et mobiles performantes et responsives</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Support Informatique</h3>
+                    <p>Résolution de problèmes techniques et assistance aux utilisateurs</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Formation</h3>
+                    <p>Conception et animation de sessions de formation en informatique</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Gestion du temps</h3>
+                    <p>Organisation et priorisation des tâches pour une efficacité optimale</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Communication</h3>
+                    <p>Échange clair et efficace avec les équipes et les utilisateurs</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Gestion de budget</h3>
+                    <p>Optimisation des ressources et contrôle des dépenses</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="certificates" id="certificats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Certificats</h2>
+                <p>Formations et certifications validant mes compétences</p>
+            </div>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <h3>Marketing Digital</h3>
+                    <div class="certificate-score">96%</div>
+                    <p>Certification en stratégies de marketing digital et outils de promotion en ligne</p>
+                </div>
+                <div class="certificate-card">
+                    <h3>Business Environment</h3>
+                    <div class="certificate-score">90%</div>
+                    <p>Compréhension des environnements d'affaires et des écosystèmes entrepreneuriaux</p>
+                </div>
+                <div class="certificate-card">
+                    <h3>RGPD</h3>
+                    <div class="certificate-score">Modules 1,2,3</div>
+                    <p>Certification RGPD par le CNIL - Protection des données personnelles</p>
+                </div>
+                <div class="certificate-card">
+                    <h3>UX & UI Design</h3>
+                    <div class="certificate-score">100%</div>
+                    <p>Conception d'interfaces utilisateur et d'expériences utilisateur optimisées</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section class="interests">
+        <div class="container">
+            <div class="section-title">
+                <h2>Centres d'Intérêt</h2>
+                <p>Mes passions en dehors du développement</p>
+            </div>
+            <div class="interests-container">
+                <div class="interest-item">
+                    <div class="interest-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Technologies et innovation</h3>
+                    <p>Veille technologique et exploration des nouvelles tendances</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Projets personnels</h3>
+                    <p>Développement d'applications et expérimentations techniques</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Musique</h3>
+                    <p>Écoute et découverte de nouveaux genres musicaux</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-moi</h2>
+                <p>N'hésitez pas à me contacter pour discuter de votre projet</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>steph.oft@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Téléphone</h3>
+                            <p>+225 0759444725</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>Localisation</h3>
+                            <p>Abidjan, Côte d'Ivoire</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p>linkedin.com/in/vangny-stephane</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required placeholder="Votre email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet</label>
+                        <input type="text" id="subject" required placeholder="Sujet du message">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required placeholder="Votre message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Irie V. Stéphane</div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>&copy; 2025 Tous droits réservés. Développeur Web & Mobile</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const hamburgerIcon = document.querySelector('.mobile-menu i');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Changer l'icône
+            if (navLinks.classList.contains('active')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Fermer le menu au clic sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Merci pour votre message ! Je vous répondrai dans les plus brefs délais.');
+            contactForm.reset();
+        });
+
+        // Animation au scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // Animation générale au scroll
+        const animateElements = document.querySelectorAll('.skill-card, .certificate-card, .interest-item');
+        
+        const animateObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        animateElements.forEach(element => {
+            animateObserver.observe(element);
+        });
+
+        // Fermer le menu en cliquant en dehors
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
+                navLinks.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Empêcher le scroll quand le menu est ouvert
+        document.addEventListener('touchmove', (e) => {
+            if (navLinks.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html>

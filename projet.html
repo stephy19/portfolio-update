@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mes Projets | Irie Vangny Stéphane</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #b600a7;
+            --primary-dark: #3f0130;
+            --secondary: #1f2937;
+            --light: #ffe4f6;
+            --gray: #6b7280;
+            --gray-light: #ffd0dc;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            min-height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            z-index: 1001;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .projects-hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fee0eb 100%);
+            text-align: center;
+        }
+
+        .projects-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .projects-hero .highlight {
+            color: var(--primary);
+        }
+
+        .projects-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.2rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(182, 0, 167, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Projects Grid */
+        .projects-section {
+            padding: 5rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-links .btn {
+            flex: 1;
+            padding: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* Project Stats */
+        .projects-stats {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            text-align: center;
+            background-color: #f1f5f9;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: #94a3b8;
+            padding: 3.5rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .footer-content .logo {
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            color: #94a3b8;
+            font-size: 1.8rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            font-size: 1.05rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .projects-hero h1 {
+                font-size: 2.4rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Menu mobile */
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                transition: var(--transition);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.4rem;
+                padding: 0.8rem 2rem;
+                border-bottom: 2px solid transparent;
+            }
+            
+            .nav-links a:hover {
+                border-bottom-color: var(--primary);
+            }
+            
+            /* Hero section */
+            .projects-hero {
+                padding: 6rem 0 3rem;
+            }
+            
+            .projects-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .projects-hero p {
+                font-size: 1.1rem;
+            }
+            
+            /* Projects grid */
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .project-card {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            /* Stats */
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            .social-links {
+                gap: 1.5rem;
+            }
+            
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Back to Home */
+        .back-to-home {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .back-to-home a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-to-home a:hover {
+            gap: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Irie V. Stéphane</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#apropos">À propos</a></li>
+                    <li><a href="index.html#experience">Expérience</a></li>
+                    <li><a href="index.html#competences">Compétences</a></li>
+                    <li><a href="index.html#certificats">Certificats</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu" aria-label="Menu mobile">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="projects-hero">
+        <div class="container">
+            <h1>Mes <span class="highlight">Projets</span></h1>
+            <p>Découvrez une sélection de mes réalisations en développement web et mobile. Chaque projet représente une solution unique créée avec passion et expertise technique.</p>
+            <a href="index.html#contact" class="btn btn-outline">Discuter d'un projet</a>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Projet 1: Portfolio -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-category">Portfolio</div>
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Portfolio">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Personnel</h3>
+                        <p>Portfolio professionnel présentant mes compétences, expériences et projets. Design moderne et responsive avec animations fluides et interface utilisateur optimisée.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://portfolio-irie.vercel.app/" target="_blank" class="btn">Voir le site</a>
+                            <a href="https://github.com/votre-github/portfolio" target="_blank" class="btn btn-outline">Code source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2: CHR Bouaké -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-category">Site Institutionnel</div>
+                        <img src="data:image/jpeg;base64,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" alt="CHR Bouaké">
+                    </div>
+                    <div class="project-content">
+                        <h3>CHR Bouaké - Plateforme Digitale</h3>
+                        <p>Plateforme de communication digitale pour l'Établissement Public Hospitalier Régional de Bouaké. Intégration d'API de blog et système de maintenance performant.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">API</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="http://chrbouake.kesug.com" target="_blank" class="btn">Visiter le site</a>
+                            <a href="#" class="btn btn-outline">Détails techniques</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3: AD Jeunesse -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-category">Application Web</div>
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AD Jeunesse">
+                    </div>
+                    <div class="project-content">
+                        <h3>AD Jeunesse - Plateforme Communautaire</h3>
+                        <p>Plateforme web pour une organisation jeunesse avec gestion des événements, inscriptions en ligne et système de communication interne. Interface intuitive et administration simplifiée.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://adjeunesse.onrender.com" target="_blank" class="btn">Accéder à l'app</a>
+                            <a href="#" class="btn btn-outline">Voir les fonctionnalités</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 4: Portfolio 2.0 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-category">Portfolio Avancé</div>
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Portfolio 2.0">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Version 2.0</h3>
+                        <p>Version avancée de mon portfolio avec animations 3D, filtres de projets interactifs et design système complet. Performance optimisée et meilleures pratiques SEO.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Three.js</span>
+                            <span class="tech-tag">SCSS</span>
+                            <span class="tech-tag">SEO</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://mon-portfolio-2-qhyh.onrender.com/" target="_blank" class="btn">Explorer</a>
+                            <a href="#" class="btn btn-outline">Technologies</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 5: Application Mobile (exemple) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-category">Application Mobile</div>
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Application Mobile">
+                    </div>
+                    <div class="project-content">
+                        <h3>TaskFlow - Gestion de Tâches</h3>
+                        <p>Application mobile de gestion de tâches avec synchronisation en temps réel, notifications push et interface drag-and-drop. Développée avec React Native et Firebase.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Push Notifications</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-outline">Voir démo</a>
+                            <a href="#" class="btn">Télécharger APK</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 6: Dashboard Admin -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-category">Dashboard</div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dashboard Admin">
+                    </div>
+                    <div class="project-content">
+                        <h3>Dashboard Analytics</h3>
+                        <p>Tableau de bord administratif avec visualisation de données en temps réel, rapports exportables et gestion des utilisateurs. Sécurisé avec authentification JWT et rôles.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">JWT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-outline">Voir screenshots</a>
+                            <a href="#" class="btn">Documentation</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Stats -->
+    <section class="projects-stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3>6+</h3>
+                    <p>Projets Réalisés</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Satisfaction Client</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4</h3>
+                    <p>Technologies Maîtrisées</p>
+                </div>
+                <div class="stat-item">
+                    <h3>∞</h3>
+                    <p>Lignes de Code</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Un projet en tête ?</h2>
+            <p>Que vous ayez besoin d'un site web, d'une application mobile ou d'une solution sur mesure, je suis là pour transformer vos idées en réalité.</p>
+            <a href="index.html#contact" class="btn">Démarrer un projet</a>
+            <div class="back-to-home">
+                <a href="index.html">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour à l'accueil
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="logo">Irie V. Stéphane</a>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <p>&copy; 2025 Tous droits réservés. Développeur Web & Mobile</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const hamburgerIcon = document.querySelector('.mobile-menu i');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Changer l'icône
+            if (navLinks.classList.contains('active')) {
+                hamburgerIcon.classList.remove('fa-bars');
+                hamburgerIcon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Fermer le menu au clic sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Animation au scroll
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Délai progressif pour chaque carte
+                    setTimeout(() => {
+                        entry.target.classList.add('animate-on-scroll');
+                    }, index * 200);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        projectCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Fermer le menu en cliquant en dehors
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenu.contains(e.target)) {
+                navLinks.classList.remove('active');
+                hamburgerIcon.classList.remove('fa-times');
+                hamburgerIcon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Empêcher le scroll quand le menu est ouvert
+        document.addEventListener('touchmove', (e) => {
+            if (navLinks.classList.contains('active')) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Stats animation
+        const statNumbers = document.querySelectorAll('.stat-item h3');
+        const statsSection = document.querySelector('.projects-stats');
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.textContent);
+                    const increment = target / 50;
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = stat.textContent; // Garde le texte original
+                            clearInterval(timer);
+                        }
+                    }, 30);
+                });
+            }
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(statsSection);
+    </script>
+</body>
+</html>
